@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios a Mejor Precio — Telefonia, Internet y Streaming</title>
+    <meta name="description" content="Los mejores precios en telefonia, internet, streaming y mas. Planes anuales desde $1,499. Promocion especial del 11 al 15 de abril.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-deep: #06060f;
+            --bg-card: #0d0d1a;
+            --bg-card-hover: #12122a;
+            --cyan: #00e5ff;
+            --magenta: #ff2d7b;
+            --violet: #8b5cf6;
+            --gold: #fbbf24;
+            --text: #e8e8f0;
+            --text-dim: #8888a8;
+            --text-bright: #ffffff;
+            --gradient-hero: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 40%, #0a1628 100%);
+            --gradient-accent: linear-gradient(135deg, var(--cyan), var(--violet));
+            --gradient-hot: linear-gradient(135deg, var(--magenta), #ff6b3d);
+            --glow-cyan: 0 0 30px rgba(0,229,255,0.3);
+            --glow-magenta: 0 0 30px rgba(255,45,123,0.3);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-bright);
+        }
+
+        /* ── UTILITY ── */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section-pad { padding: 100px 0; }
+        @media (max-width: 768px) { .section-pad { padding: 64px 0; } }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .badge--hot { background: var(--gradient-hot); color: #fff; }
+        .badge--cyan { background: rgba(0,229,255,0.12); color: var(--cyan); border: 1px solid rgba(0,229,255,0.25); }
+
+        .price {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            color: var(--cyan);
+        }
+        .price--xl { font-size: clamp(2.8rem, 6vw, 4.5rem); }
+        .price--lg { font-size: clamp(2rem, 4vw, 3rem); }
+        .price--strike {
+            text-decoration: line-through;
+            color: var(--text-dim);
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+
+        /* ── REVEAL ANIMATION ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ── NOISE OVERLAY ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
+        }
+
+        /* ── PROMO TICKER ── */
+        .ticker {
+            background: var(--gradient-hot);
+            padding: 10px 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 100;
+        }
+        .ticker__inner {
+            display: flex;
+            gap: 60px;
+            animation: ticker-scroll 20s linear infinite;
+            width: max-content;
+        }
+        .ticker__item {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            color: #fff;
+        }
+        @keyframes ticker-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient-hero);
+            overflow: hidden;
+        }
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero__bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.2;
+            filter: blur(2px) saturate(1.5);
+        }
+        .hero__bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(6,6,15,0.4) 0%, rgba(6,6,15,0.95) 100%);
+        }
+        .hero__orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .hero__orb--1 {
+            width: 500px; height: 500px;
+            background: var(--violet);
+            top: -100px; right: -100px;
+            animation: float-orb 8s ease-in-out infinite alternate;
+        }
+        .hero__orb--2 {
+            width: 400px; height: 400px;
+            background: var(--cyan);
+            bottom: -150px; left: -100px;
+            animation: float-orb 10s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes float-orb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -30px) scale(1.1); }
+        }
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        .hero__label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--cyan);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero__label::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--cyan);
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #c8c8ff 50%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero__sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-dim);
+            max-width: 580px;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+        .hero__promo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,45,123,0.1);
+            border: 1px solid rgba(255,45,123,0.3);
+            border-radius: var(--radius-sm);
+            padding: 14px 22px;
+            margin-bottom: 36px;
+            animation: pulse-border 2s ease-in-out infinite;
+        }
+        @keyframes pulse-border {
+            0%, 100% { border-color: rgba(255,45,123,0.3); }
+            50% { border-color: rgba(255,45,123,0.7); }
+        }
+        .hero__promo-icon { font-size: 1.4rem; }
+        .hero__promo-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--magenta);
+        }
+        .hero__promo-text span { color: #fff; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            border-radius: 100px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            border: none;
+        }
+        .btn--primary {
+            background: var(--gradient-accent);
+            color: #fff;
+            box-shadow: var(--glow-cyan);
+        }
+        .btn--primary:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 0 50px rgba(0,229,255,0.5);
+        }
+        .btn--whatsapp {
+            background: #25D366;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(37,211,102,0.3);
+        }
+        .btn--whatsapp:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 0 50px rgba(37,211,102,0.5);
+        }
+        .btn--large { padding: 20px 48px; font-size: 1.15rem; }
+
+        /* ── SECTION HEADERS ── */
+        .section-header { text-align: center; margin-bottom: 56px; }
+        .section-header h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin-bottom: 12px;
+        }
+        .section-header p {
+            color: var(--text-dim);
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        .section-header__line {
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-accent);
+            border-radius: 100px;
+            margin: 20px auto 0;
+        }
+
+        /* ── CARD SYSTEM ── */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 36px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .card:hover {
+            border-color: rgba(0,229,255,0.15);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+        }
+        .card:hover::before { opacity: 1; }
+
+        /* ── TV E INTERNET ── */
+        .tv-internet {
+            background: linear-gradient(180deg, var(--bg-deep) 0%, #0a0a20 100%);
+            position: relative;
+        }
+        .tv-internet__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .tv-internet__grid { grid-template-columns: 1fr; }
+        }
+        .tv-internet__image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            position: relative;
+        }
+        .tv-internet__image img {
+            width: 100%;
+            display: block;
+            border-radius: var(--radius);
+        }
+        .tv-internet__image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            border: 1px solid rgba(0,229,255,0.15);
+            pointer-events: none;
+        }
+        .providers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .provider-tag {
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+        .provider-tag:hover {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            background: rgba(0,229,255,0.08);
+        }
+        .streaming-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .streaming-list span {
+            padding: 5px 12px;
+            background: rgba(139,92,246,0.12);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--violet);
+        }
+
+        /* ── INTERNET PORTATIL ── */
+        .portable {
+            background: linear-gradient(180deg, #0a0a20 0%, var(--bg-deep) 50%, #0a0a20 100%);
+            position: relative;
+        }
+        .portable__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .portable__grid { grid-template-columns: 1fr; }
+        }
+        .portable__images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .portable__images img {
+            width: 100%;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: transform 0.4s;
+        }
+        .portable__images img:hover { transform: scale(1.03); }
+        .features-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+        .features-list li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .features-list li:last-child { border-bottom: none; }
+        .features-list .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(0,229,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .price-combo {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        /* ── TELEFONIA ── */
+        .telefonia {
+            background: linear-gradient(180deg, #0a0a20 0%, #100a1e 100%);
+        }
+        .telefonia__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        @media (max-width: 768px) {
+            .telefonia__grid { grid-template-columns: 1fr; }
+        }
+        .plan-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+        .plan-card:hover {
+            border-color: rgba(0,229,255,0.2);
+            transform: translateY(-4px);
+        }
+        .plan-card__header {
+            padding: 28px 32px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .plan-card__header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+        .plan-card__header p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        .plan-card__body {
+            padding: 24px 32px 32px;
+        }
+        .plan-card__images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .plan-card__images--single {
+            grid-template-columns: 1fr;
+            max-width: 200px;
+        }
+        .plan-card__images img {
+            width: 100%;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .plan-card__price-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .promo-badge-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--gradient-hot);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 100px;
+            letter-spacing: 0.05em;
+            margin-top: 12px;
+        }
+        .plan-note {
+            text-align: center;
+            margin-top: 32px;
+            padding: 20px;
+            border-radius: var(--radius-sm);
+            background: rgba(0,229,255,0.05);
+            border: 1px solid rgba(0,229,255,0.12);
+        }
+        .plan-note p {
+            color: var(--cyan);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* ── YOUTUBE SPOTIFY ── */
+        .yt-spotify {
+            background: linear-gradient(180deg, #100a1e 0%, var(--bg-deep) 100%);
+        }
+        .yt-spotify__card {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 48px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .yt-spotify__card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0000, #1DB954);
+        }
+        .yt-spotify__icons {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .yt-spotify__icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .yt-spotify__icon--yt { background: rgba(255,0,0,0.12); }
+        .yt-spotify__icon--sp { background: rgba(29,185,84,0.12); }
+
+        /* ── BENEFITS ── */
+        .benefits {
+            background: var(--bg-deep);
+        }
+        .benefits__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 900px) {
+            .benefits__grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 500px) {
+            .benefits__grid { grid-template-columns: 1fr; }
+        }
+        .benefit {
+            text-align: center;
+            padding: 36px 24px;
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.04);
+            transition: all 0.4s;
+        }
+        .benefit:hover {
+            border-color: rgba(0,229,255,0.15);
+            transform: translateY(-6px);
+        }
+        .benefit__icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+        }
+        .benefit:nth-child(1) .benefit__icon { background: rgba(0,229,255,0.1); }
+        .benefit:nth-child(2) .benefit__icon { background: rgba(139,92,246,0.1); }
+        .benefit:nth-child(3) .benefit__icon { background: rgba(251,191,36,0.1); }
+        .benefit:nth-child(4) .benefit__icon { background: rgba(255,45,123,0.1); }
+        .benefit h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .benefit p {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* ── FINAL CTA ── */
+        .final-cta {
+            background: linear-gradient(180deg, var(--bg-deep) 0%, #0a0a20 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .final-cta__orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.2;
+        }
+        .final-cta__orb--1 { background: var(--magenta); top: -200px; left: 50%; transform: translateX(-50%); }
+        .final-cta__orb--2 { background: var(--cyan); bottom: -300px; left: 50%; transform: translateX(-50%); }
+        .final-cta h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .final-cta p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .final-cta .btn { position: relative; }
+        .countdown-strip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,45,123,0.1);
+            border: 1px solid rgba(255,45,123,0.25);
+            padding: 10px 24px;
+            border-radius: 100px;
+            margin-bottom: 32px;
+            font-weight: 600;
+            color: var(--magenta);
+            font-size: 0.9rem;
+            position: relative;
+            animation: pulse-border 2s ease-in-out infinite;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #040409;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            padding: 40px 0;
+            text-align: center;
+        }
+        footer p {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--cyan); text-decoration: none; }
+
+        /* ── FLOATING WHATSAPP ── */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 1000;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+            transition: all 0.3s;
+            text-decoration: none;
+            animation: wa-pulse 2s ease-in-out infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 40px rgba(37,211,102,0.6);
+        }
+        .whatsapp-float svg { width: 34px; height: 34px; fill: #fff; }
+        @keyframes wa-pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+            50% { box-shadow: 0 4px 40px rgba(37,211,102,0.6), 0 0 0 12px rgba(37,211,102,0.1); }
+        }
+
+        /* ── MISC ── */
+        .highlight-text {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,229,255,0.2), transparent);
+        }
+
+        /* ── RESPONSIVE TWEAKS ── */
+        @media (max-width: 768px) {
+            .hero { min-height: 90vh; padding-top: 40px; }
+            .card { padding: 24px; }
+            .plan-card__body { padding: 20px 24px 24px; }
+            .plan-card__header { padding: 20px 24px 16px; }
+            .yt-spotify__card { padding: 32px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TICKER PROMO -->
+<div class="ticker">
+    <div class="ticker__inner">
+        <span class="ticker__item">PROMOCION DEL 11 AL 15 DE ABRIL</span>
+        <span class="ticker__item">&#9733; TODOS LOS SERVICIOS EN PROMOCION &#9733;</span>
+        <span class="ticker__item">PLATAFORMAS PREMIUM INCLUIDAS</span>
+        <span class="ticker__item">&#9733; 3 SERVICIOS POR PRECIO DE 2 &#9733;</span>
+        <span class="ticker__item">GARANTIA DE POR VIDA EN EQUIPOS</span>
+        <span class="ticker__item">PROMOCION DEL 11 AL 15 DE ABRIL</span>
+        <span class="ticker__item">&#9733; TODOS LOS SERVICIOS EN PROMOCION &#9733;</span>
+        <span class="ticker__item">PLATAFORMAS PREMIUM INCLUIDAS</span>
+        <span class="ticker__item">&#9733; 3 SERVICIOS POR PRECIO DE 2 &#9733;</span>
+        <span class="ticker__item">GARANTIA DE POR VIDA EN EQUIPOS</span>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero__bg">
+        <img src="images/streaming.jpeg" alt="Plataformas de streaming">
+    </div>
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+    <div class="container">
+        <div class="hero__content">
+            <div class="hero__label reveal">Servicios a Mejor Precio</div>
+            <h1 class="reveal reveal-delay-1">Todos tus servicios digitales en un solo lugar</h1>
+            <p class="hero__sub reveal reveal-delay-2">Telefonia, Internet, Streaming y mas &mdash; a los mejores precios del mercado. Planes anuales para que te olvides de recargas y pagos mensuales.</p>
+            <div class="hero__promo reveal reveal-delay-3">
+                <span class="hero__promo-icon">&#128293;</span>
+                <span class="hero__promo-text"><span>PROMOCION DEL 11 AL 15 DE ABRIL</span> &mdash; Aprovecha antes de que termine</span>
+            </div>
+            <br>
+            <a href="https://wa.me/+521XXXXXXXXXX?text=Hola%2C%20me%20interesa%20contratar%20servicios" class="btn btn--whatsapp btn--large reveal reveal-delay-4">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Contactar por WhatsApp
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- TV E INTERNET -->
+<section class="tv-internet section-pad" id="tv-internet">
+    <div class="container">
+        <div class="tv-internet__grid">
+            <div class="tv-internet__image reveal">
+                <img src="images/streaming.jpeg" alt="Plataformas de streaming incluidas">
+            </div>
+            <div>
+                <span class="badge badge--hot reveal">Servicio Anual</span>
+                <h2 class="reveal reveal-delay-1" style="margin-top: 16px; font-size: clamp(1.8rem, 4vw, 2.8rem);">TV e Internet</h2>
+                <p class="reveal reveal-delay-2" style="color: var(--text-dim); margin-top: 12px; font-size: 1.05rem;">Elige tu proveedor favorito y disfruta de un ano completo de servicio con todas las plataformas de streaming incluidas.</p>
+
+                <div class="price price--xl reveal reveal-delay-2" style="margin-top: 20px;">$2,500<span style="font-size: 1rem; color: var(--text-dim); font-weight: 400;">/ano</span></div>
+
+                <div class="providers reveal reveal-delay-3">
+                    <span class="provider-tag">Izzi</span>
+                    <span class="provider-tag">Telmex</span>
+                    <span class="provider-tag">Megacable</span>
+                    <span class="provider-tag">TotalPlay</span>
+                </div>
+
+                <p class="reveal reveal-delay-3" style="font-weight: 600; color: var(--violet); margin-top: 8px;">Incluye TODAS las plataformas en Xtreme Premium:</p>
+                <div class="streaming-list reveal reveal-delay-4">
+                    <span>Netflix</span>
+                    <span>Paramount+</span>
+                    <span>Disney+</span>
+                    <span>ViX</span>
+                    <span>Amazon Prime</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- INTERNET PORTATIL -->
+<section class="portable section-pad" id="internet-portatil">
+    <div class="container">
+        <div class="portable__grid">
+            <div>
+                <span class="badge badge--cyan reveal">Internet en cualquier lugar</span>
+                <h2 class="reveal reveal-delay-1" style="margin-top: 16px; font-size: clamp(1.8rem, 4vw, 2.8rem);">Internet Portatil</h2>
+                <p class="reveal reveal-delay-2" style="color: var(--text-dim); margin-top: 12px; font-size: 1.05rem;">Si no cuentas con cobertura de tu compannia favorita, el modem portatil Banda 28 es tu solucion. Llevalo a cualquier parte.</p>
+
+                <div class="price-combo reveal reveal-delay-2">
+                    <span class="price--strike">$3,300</span>
+                    <span class="price price--xl">$2,500</span>
+                </div>
+
+                <ul class="features-list reveal reveal-delay-3">
+                    <li>
+                        <span class="icon">&#128225;</span>
+                        <span><strong>Modem Portatil Banda 28</strong> &mdash; 4G/5G</span>
+                    </li>
+                    <li>
+                        <span class="icon">&#9889;</span>
+                        <span><strong>60 MB de velocidad</strong> &mdash; Navegacion rapida</span>
+                    </li>
+                    <li>
+                        <span class="icon">&#127757;</span>
+                        <span><strong>Funciona en cualquier lugar</strong> &mdash; Sin limite geografico</span>
+                    </li>
+                    <li>
+                        <span class="icon">&#128737;</span>
+                        <span><strong>Garantia de por vida</strong> &mdash; En el equipo</span>
+                    </li>
+                    <li>
+                        <span class="icon">&#127916;</span>
+                        <span><strong>Apps Premium incluidas</strong> &mdash; Netflix, Paramount+, Disney+, ViX, Amazon Prime</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="portable__images reveal reveal-delay-2">
+                <img src="images/modem-portatil.jpeg" alt="Modem portatil 4G/5G">
+                <img src="images/modem-caja.jpeg" alt="Modem portatil con caja">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- TELEFONIA -->
+<section class="telefonia section-pad" id="telefonia">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="badge badge--hot">Olvidate de las recargas</span>
+            <h2 style="margin-top: 16px;">Telefonia &mdash; Plan Anual</h2>
+            <p>Servicio ilimitado por todo un ano. Disponible para linea nueva o si ya cuentas con servicio activo.</p>
+            <div class="section-header__line"></div>
+        </div>
+
+        <div class="telefonia__grid">
+            <!-- Plan Economico -->
+            <div class="plan-card reveal">
+                <div class="plan-card__header">
+                    <span class="badge badge--cyan" style="margin-bottom: 12px;">Mejor precio</span>
+                    <h3>Plan Economico</h3>
+                    <p>Movistar &amp; Bait</p>
+                </div>
+                <div class="plan-card__body">
+                    <div class="plan-card__images">
+                        <img src="images/bait.jpeg" alt="Bait servicio ilimitado">
+                        <img src="images/movistar.jpeg" alt="Movistar plan anual">
+                    </div>
+                    <p style="font-weight: 600; color: var(--text-bright);">Bait &mdash; Servicio totalmente ilimitado</p>
+                    <div class="plan-card__price-row">
+                        <span class="price price--lg">$1,499</span>
+                        <span style="color: var(--text-dim); font-size: 0.9rem;">/ano</span>
+                    </div>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Movistar tambien disponible en plan anual</p>
+                    <div class="promo-badge-inline">
+                        &#128293; 3 servicios por precio de 2
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan Premium -->
+            <div class="plan-card reveal reveal-delay-2">
+                <div class="plan-card__header">
+                    <span class="badge badge--hot" style="margin-bottom: 12px;">Premium</span>
+                    <h3>Plan Premium</h3>
+                    <p>Unefon, AT&amp;T &amp; Telcel</p>
+                </div>
+                <div class="plan-card__body">
+                    <div class="plan-card__images plan-card__images--single" style="margin: 0 auto 20px;">
+                        <img src="images/telcel.jpeg" alt="Telcel servicio ilimitado">
+                    </div>
+                    <p style="font-weight: 600; color: var(--text-bright);">Las mejores redes del pais</p>
+                    <div class="plan-card__price-row">
+                        <span class="price price--lg">$2,300</span>
+                        <span style="color: var(--text-dim); font-size: 0.9rem;">/ano</span>
+                    </div>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Unefon &bull; AT&amp;T &bull; Telcel</p>
+                    <div class="promo-badge-inline">
+                        &#128293; 3 servicios por precio de 2
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="plan-note reveal" style="margin-top: 32px;">
+            <p>&#9989; Disponible para linea nueva o si ya cuentas con servicio activo &mdash; no esperes mas</p>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- YOUTUBE + SPOTIFY -->
+<section class="yt-spotify section-pad" id="youtube-spotify">
+    <div class="container">
+        <div class="yt-spotify__card reveal">
+            <div class="yt-spotify__icons">
+                <div class="yt-spotify__icon yt-spotify__icon--yt">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </div>
+                <div class="yt-spotify__icon yt-spotify__icon--sp">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                </div>
+            </div>
+            <h2 style="font-size: clamp(1.6rem, 3.5vw, 2.4rem); margin-bottom: 8px;">YouTube + Spotify</h2>
+            <p style="color: var(--text-dim); margin-bottom: 24px; font-size: 1.05rem;">Tu musica y videos favoritos, sin interrupciones y sin anuncios. Las dos plataformas juntas a un precio increible.</p>
+            <div class="price price--xl" style="margin-bottom: 8px;">$1,399</div>
+            <p style="color: var(--text-dim); font-size: 0.95rem;">/ano &mdash; las dos plataformas</p>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
+<!-- BENEFITS -->
+<section class="benefits section-pad" id="beneficios">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2>Por que elegirnos</h2>
+            <p>Servicios confiables, precios inmejorables y atencion personalizada</p>
+            <div class="section-header__line"></div>
+        </div>
+        <div class="benefits__grid">
+            <div class="benefit reveal">
+                <div class="benefit__icon">&#128176;</div>
+                <h4>Pago Anual sin Preocupaciones</h4>
+                <p>Un solo pago y olvidate de recargas mensuales todo el ano</p>
+            </div>
+            <div class="benefit reveal reveal-delay-1">
+                <div class="benefit__icon">&#127916;</div>
+                <h4>Plataformas Premium Incluidas</h4>
+                <p>Netflix, Disney+, Paramount+, ViX y Amazon Prime con tu servicio</p>
+            </div>
+            <div class="benefit reveal reveal-delay-2">
+                <div class="benefit__icon">&#128737;</div>
+                <h4>Garantia y Soporte</h4>
+                <p>Equipos con garantia de por vida y atencion directa por WhatsApp</p>
+            </div>
+            <div class="benefit reveal reveal-delay-3">
+                <div class="benefit__icon">&#127881;</div>
+                <h4>Promocion 3x2 en Telefonia</h4>
+                <p>Adquiere 3 servicios y paga solo 2. Valido para toda la familia</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta section-pad">
+    <div class="final-cta__orb final-cta__orb--1"></div>
+    <div class="final-cta__orb final-cta__orb--2"></div>
+    <div class="container">
+        <div class="countdown-strip reveal">
+            &#9200; Promocion valida del 11 al 15 de abril
+        </div>
+        <h2 class="reveal reveal-delay-1">No dejes pasar<br>esta oportunidad</h2>
+        <p class="reveal reveal-delay-2">Contactanos hoy y asegura los mejores precios en todos tus servicios digitales. Atencion inmediata por WhatsApp.</p>
+        <a href="https://wa.me/+521XXXXXXXXXX?text=Hola%2C%20me%20interesa%20contratar%20servicios" class="btn btn--whatsapp btn--large reveal reveal-delay-3">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Escribenos por WhatsApp
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p style="margin-bottom: 8px; font-weight: 600; color: var(--text);">Servicios a Mejor Precio</p>
+        <p>&copy; 2026 &mdash; Todos los derechos reservados</p>
+    </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/+521XXXXXXXXXX?text=Hola%2C%20me%20interesa%20contratar%20servicios" class="whatsapp-float" aria-label="Contactar por WhatsApp" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+    // Intersection Observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
