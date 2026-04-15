@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios a Mejor Precio — Telefonia, Internet y Streaming</title>
-    <meta name="description" content="Los mejores precios en telefonia, internet, streaming y mas. Planes anuales desde $1,499. Promocion especial del 11 al 15 de abril.">
+    <meta name="description" content="Los mejores precios en telefonia, internet, streaming y mas. Planes anuales desde $1,499. Venta de telefonos a mayoreo y a credito. Financiamiento a tu medida.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
@@ -729,6 +729,118 @@
             background: linear-gradient(90deg, transparent, rgba(0,229,255,0.2), transparent);
         }
 
+        /* ── TELEFONOS SECTION ── */
+        .telefonos {
+            background: linear-gradient(180deg, #100a1e 0%, var(--bg-deep) 100%);
+        }
+        .financiamiento-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 56px;
+        }
+        @media (max-width: 768px) { .financiamiento-cards { grid-template-columns: 1fr; } }
+        .fin-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 36px;
+            border: 1px solid rgba(255,255,255,0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .fin-card--mayoreo { border-top: 3px solid var(--cyan); }
+        .fin-card--credito { border-top: 3px solid var(--magenta); }
+        .fin-card__icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .fin-card h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .fin-card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
+        .fin-card ul { list-style: none; margin-top: 16px; }
+        .fin-card ul li {
+            padding: 8px 0;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .fin-card ul li:last-child { border-bottom: none; }
+        .fin-card ul li::before { content: '✓'; color: var(--cyan); font-weight: 700; }
+        .fin-card--credito ul li::before { color: var(--magenta); }
+
+        .brand-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+        .brand-tab {
+            padding: 8px 20px;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: 'Syne', sans-serif;
+        }
+        .brand-tab.active,
+        .brand-tab:hover {
+            background: rgba(0,229,255,0.1);
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+        .phones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        @media (max-width: 500px) { .phones-grid { grid-template-columns: repeat(2, 1fr); } }
+        .phone-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+        .phone-card:hover {
+            border-color: rgba(0,229,255,0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .phone-card img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+        }
+        .phone-card__info {
+            padding: 12px 14px 14px;
+        }
+        .phone-card__brand {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 4px;
+        }
+        .phone-card__name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-bright);
+        }
+        .phone-card__specs {
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+        .phone-card[data-brand].hidden { display: none; }
+
         /* ── RESPONSIVE TWEAKS ── */
         @media (max-width: 768px) {
             .hero { min-height: 90vh; padding-top: 40px; }
@@ -744,16 +856,18 @@
 <!-- TICKER PROMO -->
 <div class="ticker">
     <div class="ticker__inner">
-        <span class="ticker__item">PROMOCION DEL 11 AL 15 DE ABRIL</span>
         <span class="ticker__item">&#9733; TODOS LOS SERVICIOS EN PROMOCION &#9733;</span>
         <span class="ticker__item">PLATAFORMAS PREMIUM INCLUIDAS</span>
         <span class="ticker__item">&#9733; 3 SERVICIOS POR PRECIO DE 2 &#9733;</span>
         <span class="ticker__item">GARANTIA DE POR VIDA EN EQUIPOS</span>
-        <span class="ticker__item">PROMOCION DEL 11 AL 15 DE ABRIL</span>
+        <span class="ticker__item">&#9733; VENTA DE TELEFONOS A MAYOREO Y A CREDITO &#9733;</span>
+        <span class="ticker__item">FINANCIAMIENTO A TU MEDIDA</span>
         <span class="ticker__item">&#9733; TODOS LOS SERVICIOS EN PROMOCION &#9733;</span>
         <span class="ticker__item">PLATAFORMAS PREMIUM INCLUIDAS</span>
         <span class="ticker__item">&#9733; 3 SERVICIOS POR PRECIO DE 2 &#9733;</span>
         <span class="ticker__item">GARANTIA DE POR VIDA EN EQUIPOS</span>
+        <span class="ticker__item">&#9733; VENTA DE TELEFONOS A MAYOREO Y A CREDITO &#9733;</span>
+        <span class="ticker__item">FINANCIAMIENTO A TU MEDIDA</span>
     </div>
 </div>
 
@@ -770,8 +884,8 @@
             <h1 class="reveal reveal-delay-1">Todos tus servicios digitales en un solo lugar</h1>
             <p class="hero__sub reveal reveal-delay-2">Telefonia, Internet, Streaming y mas &mdash; a los mejores precios del mercado. Planes anuales para que te olvides de recargas y pagos mensuales.</p>
             <div class="hero__promo reveal reveal-delay-3">
-                <span class="hero__promo-icon">&#128293;</span>
-                <span class="hero__promo-text"><span>PROMOCION DEL 11 AL 15 DE ABRIL</span> &mdash; Aprovecha antes de que termine</span>
+                <span class="hero__promo-icon">&#128241;</span>
+                <span class="hero__promo-text"><span>TELEFONOS A MAYOREO Y A CREDITO</span> &mdash; Financiamiento a tu medida</span>
             </div>
             <br>
             <a href="https://wa.me/+521XXXXXXXXXX?text=Hola%2C%20me%20interesa%20contratar%20servicios" class="btn btn--whatsapp btn--large reveal reveal-delay-4">
@@ -987,14 +1101,515 @@
     </div>
 </section>
 
+<!-- TELEFONOS A MAYOREO Y CREDITO -->
+<section class="telefonos section-pad" id="telefonos">
+    <div class="container">
+        <div class="section-header reveal">
+            <span class="badge badge--cyan">Windcel</span>
+            <h2 style="margin-top: 16px;">Telefonos a Mayoreo<br>y a Credito</h2>
+            <p>Financiamiento a tu medida. Disponibles para compra individual, a mayoreo y con opciones de credito.</p>
+            <div class="section-header__line"></div>
+        </div>
+
+        <!-- Tarjetas Mayoreo / Credito -->
+        <div class="financiamiento-cards reveal">
+            <div class="fin-card fin-card--mayoreo">
+                <div class="fin-card__icon">&#128230;</div>
+                <h3>Venta a Mayoreo</h3>
+                <p>Precios especiales para distribuidores, revendedores y negocios. Consigue el mejor precio por volumen.</p>
+                <ul>
+                    <li>Precios preferenciales por volumen</li>
+                    <li>Todas las marcas disponibles</li>
+                    <li>Entrega a domicilio</li>
+                    <li>Garantia de 6 meses incluida</li>
+                    <li>Libres para cualquier compania</li>
+                </ul>
+            </div>
+            <div class="fin-card fin-card--credito">
+                <div class="fin-card__icon">&#128179;</div>
+                <h3>Financiamiento a tu Medida</h3>
+                <p>Lleva tu telefono hoy y pagalo en parcialidades. Sin complicaciones, sin burocracia.</p>
+                <ul>
+                    <li>Enganche desde $0</li>
+                    <li>Plazos flexibles semanales o quincenales</li>
+                    <li>Aprobacion rapida por WhatsApp</li>
+                    <li>Equipos nuevos con garantia</li>
+                    <li>Disponible para iphone y Android</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Filtros por marca -->
+        <div class="brand-tabs reveal">
+            <button class="brand-tab active" onclick="filterPhones('all')">Todos</button>
+            <button class="brand-tab" onclick="filterPhones('honor')">Honor</button>
+            <button class="brand-tab" onclick="filterPhones('xiaomi')">Xiaomi</button>
+            <button class="brand-tab" onclick="filterPhones('motorola')">Motorola</button>
+            <button class="brand-tab" onclick="filterPhones('samsung')">Samsung</button>
+            <button class="brand-tab" onclick="filterPhones('apple')">Apple</button>
+            <button class="brand-tab" onclick="filterPhones('infinix')">Infinix / Tecno</button>
+            <button class="brand-tab" onclick="filterPhones('otros')">Otros</button>
+        </div>
+
+        <!-- Grid de telefonos -->
+        <div class="phones-grid" id="phones-grid">
+            <!-- HONOR -->
+            <div class="phone-card reveal" data-brand="honor">
+                <img src="Images/windcel-Honor-X7C.png" alt="Honor X7C" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Honor</div>
+                    <div class="phone-card__name">X7C</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5000 mAh · 6.67"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="honor">
+                <img src="Images/windcel-Honor-Play-10.png" alt="Honor Play 10" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Honor</div>
+                    <div class="phone-card__name">Play 10</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5000 mAh · 6.74"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="honor">
+                <img src="Images/windcel-Honor-X5C.png" alt="Honor X5C" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Honor</div>
+                    <div class="phone-card__name">X5C</div>
+                    <div class="phone-card__specs">256GB · 4 RAM · 5260 mAh · 6.72"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="honor">
+                <img src="Images/windcel-Honor-Magic-8-lite.png" alt="Honor Magic 8 Lite" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Honor</div>
+                    <div class="phone-card__name">Magic 8 Lite</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 7500 mAh · 6.79"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="honor">
+                <img src="Images/windcel-Honor-X6C.png" alt="Honor X6C" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Honor</div>
+                    <div class="phone-card__name">X6C</div>
+                    <div class="phone-card__specs">256GB · 6 RAM · 5300 mAh · 6.61"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="honor">
+                <img src="Images/windcel-Honor-Play-9S.png" alt="Honor Play 9S" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Honor</div>
+                    <div class="phone-card__name">Play 9S</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5000 mAh · 6.7"</div>
+                </div>
+            </div>
+
+            <!-- XIAOMI -->
+            <div class="phone-card reveal" data-brand="xiaomi">
+                <img src="Images/windcel-Xiaomi-A5.png" alt="Xiaomi A5" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Xiaomi</div>
+                    <div class="phone-card__name">A5</div>
+                    <div class="phone-card__specs">64GB · 3 RAM · 5200 mAh · 6.88"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="xiaomi">
+                <img src="Images/windcel-Xiaomi-Note-15-Pro.png" alt="Redmi Note 15 Pro" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Redmi</div>
+                    <div class="phone-card__name">Note 15 Pro</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 6580 mAh · 6.83"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="xiaomi">
+                <img src="Images/windcel-Xiaomi-Note-14.png" alt="Redmi Note 14" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Redmi</div>
+                    <div class="phone-card__name">Note 14</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5500 mAh · 6.67"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="xiaomi">
+                <img src="Images/windcel-Xiaomi-15.png" alt="Xiaomi 15" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Xiaomi</div>
+                    <div class="phone-card__name">15</div>
+                    <div class="phone-card__specs">128GB · 6 RAM · 7000 mAh · 6.9"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="xiaomi">
+                <img src="Images/windcel-Xiaomi-15C-4GB.png" alt="Redmi 15C 4GB" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Redmi</div>
+                    <div class="phone-card__name">15C (4 RAM)</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 6000 mAh · 6.9"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="xiaomi">
+                <img src="Images/windcel-Xiaomi-15C-8GB.png" alt="Redmi 15C 8GB" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Redmi</div>
+                    <div class="phone-card__name">15C (8 RAM)</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 6000 mAh · 6.9"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="xiaomi">
+                <img src="Images/windcel-Xiaomi-POCO-C85.png" alt="POCO C85" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">POCO</div>
+                    <div class="phone-card__name">C85</div>
+                    <div class="phone-card__specs">128GB · 6 RAM · 6000 mAh · 6.4"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="xiaomi">
+                <img src="Images/windcel-Xiaomi-K30.png" alt="Redmi K30" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Redmi</div>
+                    <div class="phone-card__name">K30</div>
+                    <div class="phone-card__specs">256GB · 10 RAM · 5000 mAh · 6.7"</div>
+                </div>
+            </div>
+
+            <!-- MOTOROLA -->
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G04S.png" alt="Motorola G04S" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G04S</div>
+                    <div class="phone-card__specs">64GB · 4 RAM · 5200 mAh · 7.99"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G86.png" alt="Motorola G86" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G86</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5000 mAh · 6.6"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G05.png" alt="Motorola G05" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G05</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5200 mAh · 6.67"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G56.png" alt="Motorola G56" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G56</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5200 mAh · 6.72"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G55-5G.png" alt="Motorola G55 5G" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G55 5G</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5000 mAh · 6.49"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G06.png" alt="Motorola G06" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G06</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5200 mAh · 6.88"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G15-256GB.png" alt="Motorola G15 256GB" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G15 (256GB)</div>
+                    <div class="phone-card__specs">256GB · 4 RAM · 5200 mAh · 6.70"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G15-128GB.png" alt="Motorola G15 128GB" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G15 (128GB)</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5200 mAh · 6.70"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G35-128GB.png" alt="Motorola G35 128GB" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G35 (128GB)</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5200 mAh · 6.72"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G35-256GB.png" alt="Motorola G35 256GB" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G35 (256GB)</div>
+                    <div class="phone-card__specs">256GB · 4 RAM · 5200 mAh · 6.72"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="motorola">
+                <img src="Images/windcel-Motorola-G63.png" alt="Motorola G63" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Motorola</div>
+                    <div class="phone-card__name">Moto G63</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5000 mAh · 6.3"</div>
+                </div>
+            </div>
+
+            <!-- SAMSUNG -->
+            <div class="phone-card reveal" data-brand="samsung">
+                <img src="Images/windcel-Samsung-A16-5G.png" alt="Samsung A16 5G" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Samsung</div>
+                    <div class="phone-card__name">Galaxy A16 5G</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5200 mAh · 6.6"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="samsung">
+                <img src="Images/windcel-Samsung-A26.png" alt="Samsung A26" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Samsung</div>
+                    <div class="phone-card__name">Galaxy A26</div>
+                    <div class="phone-card__specs">128GB · 6 RAM · 5000 mAh · 6.7"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="samsung">
+                <img src="Images/windcel-Samsung-A17-5G.png" alt="Samsung A17 5G" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Samsung</div>
+                    <div class="phone-card__name">Galaxy A17 5G</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5000 mAh · 6.7"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="samsung">
+                <img src="Images/windcel-Samsung-A17-4G.png" alt="Samsung A17 4G" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Samsung</div>
+                    <div class="phone-card__name">Galaxy A17 4G</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5000 mAh · 6.7"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="samsung">
+                <img src="Images/windcel-Samsung-A07-64GB.png" alt="Samsung A07 64GB" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Samsung</div>
+                    <div class="phone-card__name">Galaxy A07 (64GB)</div>
+                    <div class="phone-card__specs">64GB · 4 RAM · 5000 mAh · 6.7"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="samsung">
+                <img src="Images/windcel-Samsung-A07-128GB.png" alt="Samsung A07 128GB" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Samsung</div>
+                    <div class="phone-card__name">Galaxy A07 (128GB)</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5000 mAh · 6.7"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="samsung">
+                <img src="Images/windcel-Samsung-A36-5G.png" alt="Samsung A36 5G" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Samsung</div>
+                    <div class="phone-card__name">Galaxy A36 5G</div>
+                    <div class="phone-card__specs">128GB · 6 RAM · 5000 mAh · 6.7"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="samsung">
+                <img src="Images/windcel-Samsung-A06-64GB.png" alt="Samsung A06 64GB" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Samsung</div>
+                    <div class="phone-card__name">Galaxy A06 (64GB)</div>
+                    <div class="phone-card__specs">64GB · 4 RAM · 5000 mAh · 6.7"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="samsung">
+                <img src="Images/windcel-Samsung-A06-128GB.png" alt="Samsung A06 128GB" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Samsung</div>
+                    <div class="phone-card__name">Galaxy A06 (128GB)</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5000 mAh · 6.7"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="samsung">
+                <img src="Images/windcel-Samsung-F41-4G.png" alt="Samsung F41 4G" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Samsung</div>
+                    <div class="phone-card__name">Galaxy F41 4G</div>
+                    <div class="phone-card__specs">4G · 1350 mAh · 2.4"</div>
+                </div>
+            </div>
+
+            <!-- APPLE -->
+            <div class="phone-card reveal" data-brand="apple">
+                <img src="Images/windcel-Apple-iPhone-13.png" alt="iPhone 13" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Apple</div>
+                    <div class="phone-card__name">iPhone 13</div>
+                    <div class="phone-card__specs">128GB · 3227 mAh · 6.1"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="apple">
+                <img src="Images/windcel-Apple-iPhone-15.png" alt="iPhone 15" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Apple</div>
+                    <div class="phone-card__name">iPhone 15</div>
+                    <div class="phone-card__specs">128GB · 3650 mAh · 6.7"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="apple">
+                <img src="Images/windcel-Apple-iPhone-16.png" alt="iPhone 16" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Apple</div>
+                    <div class="phone-card__name">iPhone 16</div>
+                    <div class="phone-card__specs">256GB · 3561 mAh · 6.3"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="apple">
+                <img src="Images/windcel-Apple-iPhone-17.png" alt="iPhone 17" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Apple</div>
+                    <div class="phone-card__name">iPhone 17</div>
+                    <div class="phone-card__specs">256GB · 3036 mAh · 6.5"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="apple">
+                <img src="Images/windcel-Apple-iPhone-17-Pro.png" alt="iPhone 17 Pro" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Apple</div>
+                    <div class="phone-card__name">iPhone 17 Pro</div>
+                    <div class="phone-card__specs">256GB · 5088 mAh · 6.9"</div>
+                </div>
+            </div>
+
+            <!-- INFINIX / TECNO -->
+            <div class="phone-card reveal" data-brand="infinix">
+                <img src="Images/windcel-Infinix-Smart-20.png" alt="Infinix Smart 20" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Infinix</div>
+                    <div class="phone-card__name">Smart 20</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5200 mAh · 6.78"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="infinix">
+                <img src="Images/windcel-Infinix-Hot-60i.png" alt="Infinix Hot 60i" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Infinix</div>
+                    <div class="phone-card__name">Hot 60i</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5000 mAh · 6.70"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="infinix">
+                <img src="Images/windcel-Infinix-Hot-60-Pro-Plus.png" alt="Infinix Hot 60 Pro Plus" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Infinix</div>
+                    <div class="phone-card__name">Hot 60 Pro Plus</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5000 mAh · 6.78"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="infinix">
+                <img src="Images/windcel-Infinix-Hot-60-Pro.png" alt="Infinix Hot 60 Pro" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Infinix</div>
+                    <div class="phone-card__name">Hot 60 Pro</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5160 mAh · 6.78"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="infinix">
+                <img src="Images/windcel-Infinix-Smart-10.png" alt="Infinix Smart 10" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Infinix</div>
+                    <div class="phone-card__name">Smart 10</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5000 mAh · 6.67"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="infinix">
+                <img src="Images/windcel-Infinix-Spark-Go-2.png" alt="Infinix Spark Go 2" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Infinix</div>
+                    <div class="phone-card__name">Spark Go 2</div>
+                    <div class="phone-card__specs">128GB · 4 RAM · 5000 mAh · 6.67"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="infinix">
+                <img src="Images/windcel-Tecno-Camon-50-Pro.png" alt="Tecno Camon 50 Pro" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Tecno</div>
+                    <div class="phone-card__name">Camon 50 Pro</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 6150 mAh · 6.78"</div>
+                </div>
+            </div>
+
+            <!-- OTROS -->
+            <div class="phone-card reveal" data-brand="otros">
+                <img src="Images/windcel-Lanix-Alpha-6.png" alt="Lanix Alpha 6" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Lanix</div>
+                    <div class="phone-card__name">Alpha 6</div>
+                    <div class="phone-card__specs">256GB · 8 RAM · 5000 mAh · 6.67"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="otros">
+                <img src="Images/windcel-Sky-P55-Pro.png" alt="Sky P55 Pro" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Sky</div>
+                    <div class="phone-card__name">P55 Pro</div>
+                    <div class="phone-card__specs">16GB · 2 RAM · 2000 mAh · 5.45"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="otros">
+                <img src="Images/windcel-Wiko-Cloud-C8.png" alt="Wiko Cloud C8" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Wiko</div>
+                    <div class="phone-card__name">Cloud C8</div>
+                    <div class="phone-card__specs">32GB · 3 RAM · 5000 mAh · 6.5"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="otros">
+                <img src="Images/windcel-Figo-A551.png" alt="Figo A551" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Figo</div>
+                    <div class="phone-card__name">A551</div>
+                    <div class="phone-card__specs">16GB · 2 RAM · 2000 mAh · 5.5"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="otros">
+                <img src="Images/windcel-Artia.png" alt="Artia" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">Artia</div>
+                    <div class="phone-card__name">Artia</div>
+                    <div class="phone-card__specs">16GB · 2 RAM · 3000 mAh · 6"</div>
+                </div>
+            </div>
+            <div class="phone-card reveal" data-brand="otros">
+                <img src="Images/windcel-TechPad-K-Flip.png" alt="TechPad K-Flip" loading="lazy">
+                <div class="phone-card__info">
+                    <div class="phone-card__brand">TechPad</div>
+                    <div class="phone-card__name">K-Flip</div>
+                    <div class="phone-card__specs">32GB · 2.8" · Camara basica</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Telefonos -->
+        <div style="text-align: center; margin-top: 48px;" class="reveal">
+            <p style="color: var(--text-dim); margin-bottom: 20px; font-size: 1rem;">Todos los equipos son nuevos, libres para cualquier compania y con 6 meses de garantia</p>
+            <a href="https://wa.me/+521XXXXXXXXXX?text=Hola%2C%20me%20interesa%20informacion%20sobre%20venta%20de%20telefonos%20a%20mayoreo%20o%20credito" class="btn btn--whatsapp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Consultar precios y disponibilidad
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="container"><div class="divider"></div></div>
+
 <!-- FINAL CTA -->
 <section class="final-cta section-pad">
     <div class="final-cta__orb final-cta__orb--1"></div>
     <div class="final-cta__orb final-cta__orb--2"></div>
     <div class="container">
-        <div class="countdown-strip reveal">
-            &#9200; Promocion valida del 11 al 15 de abril
-        </div>
         <h2 class="reveal reveal-delay-1">No dejes pasar<br>esta oportunidad</h2>
         <p class="reveal reveal-delay-2">Contactanos hoy y asegura los mejores precios en todos tus servicios digitales. Atencion inmediata por WhatsApp.</p>
         <a href="https://wa.me/+521XXXXXXXXXX?text=Hola%2C%20me%20interesa%20contratar%20servicios" class="btn btn--whatsapp btn--large reveal reveal-delay-3">
@@ -1028,6 +1643,21 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Brand filter
+    function filterPhones(brand) {
+        document.querySelectorAll('.brand-tab').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        document.querySelectorAll('.phone-card').forEach(card => {
+            if (brand === 'all' || card.dataset.brand === brand) {
+                card.classList.remove('hidden');
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    window.filterPhones = filterPhones;
 </script>
 
 </body>
