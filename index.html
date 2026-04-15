@@ -589,6 +589,43 @@
         .yt-spotify__icon--yt { background: rgba(255,0,0,0.12); }
         .yt-spotify__icon--sp { background: rgba(29,185,84,0.12); }
 
+        /* ── STREAMING CARDS ── */
+        .streaming-anual-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .streaming-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        .streaming-card--reverse {
+            direction: rtl;
+        }
+        .streaming-card--reverse > * {
+            direction: ltr;
+        }
+        .streaming-card__img img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            max-height: 420px;
+        }
+        .streaming-card__body {
+            padding: 40px 44px;
+        }
+        @media (max-width: 768px) {
+            .streaming-card,
+            .streaming-card--reverse {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+            .streaming-card__img img { max-height: 280px; }
+            .streaming-card__body { padding: 28px 24px; }
+        }
+
         /* ── BENEFITS ── */
         .benefits {
             background: var(--bg-deep);
@@ -1098,14 +1135,16 @@
             <p>Todas tus plataformas favoritas por un solo pago al ano. Sin mensualidades, sin renovaciones.</p>
             <div class="section-header__line"></div>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;" class="streaming-anual-grid">
+        <div class="streaming-anual-grid">
             <!-- Netflix Premium 4K -->
-            <div class="card reveal" style="padding: 0; overflow: hidden;">
-                <img src="images/netflix.jpeg" alt="Netflix Premium 4K" style="width: 100%; display: block; border-radius: var(--radius) var(--radius) 0 0;">
-                <div style="padding: 28px 32px 32px;">
-                    <span class="badge badge--hot" style="margin-bottom: 14px;">Netflix</span>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Netflix Premium 4K</h3>
-                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 16px;">Cuentas premium con calidad 4K. Peliculas recientes, las mismas que estan en cines.</p>
+            <div class="card streaming-card reveal" style="padding: 0; overflow: hidden;">
+                <div class="streaming-card__img">
+                    <img src="images/netflix.jpeg" alt="Netflix Premium 4K">
+                </div>
+                <div class="streaming-card__body">
+                    <span class="badge badge--hot" style="margin-bottom: 16px;">Netflix</span>
+                    <h3 style="font-size: 1.6rem; margin-bottom: 10px;">Netflix Premium 4K</h3>
+                    <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 24px; line-height: 1.6;">Cuentas premium con calidad 4K. Peliculas recientes, las mismas que estan en cines. Sin anuncios, disfruta en cualquier dispositivo.</p>
                     <div style="display: flex; align-items: baseline; gap: 10px;">
                         <span class="price price--lg">$1,300</span>
                         <span style="color: var(--text-dim); font-size: 0.9rem;">/ano</span>
@@ -1113,12 +1152,14 @@
                 </div>
             </div>
             <!-- Paquete Streaming Completo -->
-            <div class="card reveal reveal-delay-2" style="padding: 0; overflow: hidden;">
-                <img src="images/streaming.jpeg" alt="Paquete Streaming Completo" style="width: 100%; display: block; border-radius: var(--radius) var(--radius) 0 0;">
-                <div style="padding: 28px 32px 32px;">
-                    <span class="badge badge--cyan" style="margin-bottom: 14px;">Paquete Completo</span>
-                    <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Todas las Plataformas</h3>
-                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 16px;">Netflix, Disney+, Prime Video, ViX, Max, Paramount+ y Crunchyroll. Todo en un solo plan anual.</p>
+            <div class="card streaming-card streaming-card--reverse reveal reveal-delay-2" style="padding: 0; overflow: hidden;">
+                <div class="streaming-card__img">
+                    <img src="images/streaming.jpeg" alt="Paquete Streaming Completo">
+                </div>
+                <div class="streaming-card__body">
+                    <span class="badge badge--cyan" style="margin-bottom: 16px;">Paquete Completo</span>
+                    <h3 style="font-size: 1.6rem; margin-bottom: 10px;">Todas las Plataformas</h3>
+                    <p style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 24px; line-height: 1.6;">Netflix, Disney+, Prime Video, ViX, Max, Paramount+ y Crunchyroll. Todo en un solo pago anual, sin mensualidades.</p>
                     <div style="display: flex; align-items: baseline; gap: 10px;">
                         <span class="price price--lg">$1,499</span>
                         <span style="color: var(--text-dim); font-size: 0.9rem;">/ano</span>
@@ -1128,12 +1169,6 @@
         </div>
     </div>
 </section>
-
-<style>
-@media (max-width: 768px) {
-    .streaming-anual-grid { grid-template-columns: 1fr !important; }
-}
-</style>
 
 <div class="container"><div class="divider"></div></div>
 
