@@ -341,22 +341,22 @@
             .tv-internet__grid { grid-template-columns: 1fr; }
         }
         .tv-internet__image {
-            border-radius: var(--radius);
-            overflow: hidden;
-            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 12px;
         }
         .tv-internet__image img {
             width: 100%;
             display: block;
             border-radius: var(--radius);
+            border: 1px solid rgba(0,229,255,0.12);
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
         }
-        .tv-internet__image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: var(--radius);
-            border: 1px solid rgba(0,229,255,0.15);
-            pointer-events: none;
+        .tv-internet__image img:hover { transform: scale(1.02); }
+        .tv-internet__image img.img-full {
+            grid-column: 1 / -1;
         }
         .providers {
             display: flex;
@@ -901,7 +901,9 @@
     <div class="container">
         <div class="tv-internet__grid">
             <div class="tv-internet__image reveal">
-                <img src="images/promo-izzi.jpeg" alt="Izzi Internet y Canales $100 primer mes">
+                <img src="images/promo-izzi.jpeg" alt="Izzi Internet y Canales $100 primer mes" class="img-full">
+                <img src="images/izzi-planes-internet.jpeg" alt="Planes Izzi Internet y TV">
+                <img src="images/izzi-tv-premium.png" alt="Izzi TV+ Premium con Sky Sports">
             </div>
             <div>
                 <span class="badge badge--hot reveal">Servicio Anual</span>
