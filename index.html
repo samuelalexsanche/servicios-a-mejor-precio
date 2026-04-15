@@ -332,42 +332,42 @@
             position: relative;
         }
         .tv-internet__grid {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .tv-internet__text {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
         }
         @media (max-width: 768px) {
-            .tv-internet__grid { grid-template-columns: 1fr; }
+            .tv-internet__text { grid-template-columns: 1fr; }
+        }
+        .tv-internet__imgs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            align-items: start;
+        }
+        @media (max-width: 768px) {
+            .tv-internet__imgs { grid-template-columns: 1fr; }
         }
         .tv-internet__image {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
         }
         .tv-internet__image img {
             width: 100%;
+            height: auto;
             display: block;
             border-radius: var(--radius);
             border: 1px solid rgba(0,229,255,0.12);
-            object-fit: cover;
             transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
         }
-        .tv-internet__image img:hover { transform: scale(1.02); }
-        .tv-internet__image .img-full {
-            height: 220px;
-            object-position: center;
-        }
-        .tv-internet__image .img-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .tv-internet__image .img-row img {
-            height: 280px;
-            object-fit: cover;
-            object-position: top;
-        }
+        .tv-internet__image img:hover { transform: scale(1.015); }
         .providers {
             display: flex;
             flex-wrap: wrap;
@@ -910,34 +910,41 @@
 <section class="tv-internet section-pad" id="tv-internet">
     <div class="container">
         <div class="tv-internet__grid">
-            <div class="tv-internet__image reveal">
-                <img src="images/promo-izzi.jpeg" alt="Izzi Internet y Canales $100 primer mes" class="img-full">
-                <div class="img-row">
-                    <img src="images/izzi-planes-internet.jpeg" alt="Planes Izzi Internet y TV">
-                    <img src="images/izzi-tv-premium.png" alt="Izzi TV+ Premium con Sky Sports">
+            <!-- Texto -->
+            <div class="tv-internet__text">
+                <div>
+                    <span class="badge badge--hot reveal">Servicio Anual</span>
+                    <h2 class="reveal reveal-delay-1" style="margin-top: 16px; font-size: clamp(1.8rem, 4vw, 2.8rem);">TV e Internet</h2>
+                    <p class="reveal reveal-delay-2" style="color: var(--text-dim); margin-top: 12px; font-size: 1.05rem;">Elige tu proveedor favorito y disfruta de un ano completo de servicio con todas las plataformas de streaming incluidas.</p>
+                </div>
+                <div>
+                    <div class="price price--xl reveal" style="margin-top: 20px;">$2,500<span style="font-size: 1rem; color: var(--text-dim); font-weight: 400;">/ano</span></div>
+                    <div class="providers reveal reveal-delay-1">
+                        <span class="provider-tag">Izzi</span>
+                        <span class="provider-tag">Telmex</span>
+                        <span class="provider-tag">Megacable</span>
+                        <span class="provider-tag">TotalPlay</span>
+                    </div>
+                    <p class="reveal reveal-delay-2" style="font-weight: 600; color: var(--violet); margin-top: 8px;">Incluye TODAS las plataformas en Xtreme Premium:</p>
+                    <div class="streaming-list reveal reveal-delay-3">
+                        <span>Netflix</span>
+                        <span>Paramount+</span>
+                        <span>Disney+</span>
+                        <span>ViX</span>
+                        <span>Amazon Prime</span>
+                    </div>
                 </div>
             </div>
-            <div>
-                <span class="badge badge--hot reveal">Servicio Anual</span>
-                <h2 class="reveal reveal-delay-1" style="margin-top: 16px; font-size: clamp(1.8rem, 4vw, 2.8rem);">TV e Internet</h2>
-                <p class="reveal reveal-delay-2" style="color: var(--text-dim); margin-top: 12px; font-size: 1.05rem;">Elige tu proveedor favorito y disfruta de un ano completo de servicio con todas las plataformas de streaming incluidas.</p>
-
-                <div class="price price--xl reveal reveal-delay-2" style="margin-top: 20px;">$2,500<span style="font-size: 1rem; color: var(--text-dim); font-weight: 400;">/ano</span></div>
-
-                <div class="providers reveal reveal-delay-3">
-                    <span class="provider-tag">Izzi</span>
-                    <span class="provider-tag">Telmex</span>
-                    <span class="provider-tag">Megacable</span>
-                    <span class="provider-tag">TotalPlay</span>
+            <!-- Imagenes -->
+            <div class="tv-internet__imgs">
+                <div class="tv-internet__image reveal">
+                    <img src="images/promo-izzi.jpeg" alt="Izzi Internet y Canales $100 primer mes">
                 </div>
-
-                <p class="reveal reveal-delay-3" style="font-weight: 600; color: var(--violet); margin-top: 8px;">Incluye TODAS las plataformas en Xtreme Premium:</p>
-                <div class="streaming-list reveal reveal-delay-4">
-                    <span>Netflix</span>
-                    <span>Paramount+</span>
-                    <span>Disney+</span>
-                    <span>ViX</span>
-                    <span>Amazon Prime</span>
+                <div class="tv-internet__image reveal reveal-delay-1">
+                    <img src="images/izzi-planes-internet.jpeg" alt="Planes Izzi Internet y TV">
+                </div>
+                <div class="tv-internet__image reveal reveal-delay-2">
+                    <img src="images/izzi-tv-premium.png" alt="Izzi TV+ Premium con Sky Sports">
                 </div>
             </div>
         </div>
